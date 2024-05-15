@@ -30,5 +30,6 @@ li:hover::before{
   cursor: pointer;
 }
 .card{
-  background: #000;
+  background:url(/src/Assets/textimonial-bg.png);
+  background-color: #d2d5dc;
 }
