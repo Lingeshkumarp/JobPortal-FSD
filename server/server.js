@@ -28,6 +28,9 @@ async function connectTodb(){
 }
 connectTodb();
 
+app.get('/',(req,res)=>{
+    res.json({message:"NODE SERVER"})
+})
 app.post('/signup',async(req,res)=>{
  const {username,email,password} = req.body
  try {
