@@ -7,6 +7,8 @@ import Search from './Components/Serach/Search'
 import Jobs from './Components/Job/Job'
 import Value from './Components/Value/Value'
 import Footer from './Components/Footer/Footer'
+import Otp from './otp'
+import Profile from "./Profile";
 
 function Home(){
     return(
@@ -19,6 +21,8 @@ function Home(){
       <Jobs/>
       <Value/>
       <Footer/>
+      <Otp/>
+      <Profile/>
     </div>
         </>
     )

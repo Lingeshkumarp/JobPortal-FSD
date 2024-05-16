@@ -7,6 +7,7 @@ import Jobs from './Components/Job/Job'
 import Value from './Components/Value/Value'
 import Footer from './Components/Footer/Footer'
 import Home from './Home'
+
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 
 const App=()=>{
@@ -25,7 +26,7 @@ const App=()=>{
       <Jobs/>
       <Value/>
       <Footer/> */}
-
+      
     </div>
     </>
   )
