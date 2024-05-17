@@ -86,6 +86,7 @@ function Otp() {
         <p className="mt-2 text-center text-sm text-gray-600">{message}</p>
       </div>
     </div>
+    
   );
 }
 
