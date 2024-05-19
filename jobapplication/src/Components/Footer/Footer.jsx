@@ -66,22 +66,6 @@ const Footer=()=>{
          </div>
         </div>
       </div>
-      <div className='main-container'>
-      <GoogleOAuthProvider clientId='257538003735-00o1fbsg4brl2j6afkeg2skd8densd73.apps.googleusercontent.com'>
-
-      
-      <GoogleLogin 
-      onSuccess={credentialResponse=>{
-        console.log(credentialResponse);
-      }}
-      orError={()=>{
-        console.log("Sign up failed");
-      }}
-      />  
-      
-      </GoogleOAuthProvider>
-    </div>
-
     </div>
   )
 }

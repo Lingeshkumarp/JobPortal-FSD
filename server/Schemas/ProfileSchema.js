@@ -1,18 +1,32 @@
 const mongoose = require('mongoose');
 
-// Schema for user profile data
-const profileSchema = {
-  name: "John Doe",
-  username: "johndoe",
-  email: "johndoe@example.com",
-  bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  avatar: "https://via.placeholder.com/150", 
-  social: {
-    leetcode: "https://leetcode.com/johndoe",
-    codechef: "https://codechef.com/johndoe",
-    github: "https://github.com/in/johndoe",
+// Define the schema for the profile
+const ProfileSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true, // Name is required
   },
-};
+  email: {
+    type: String,
+    required: true, // Email is required
+    unique: true, // Ensure email is unique
+  },
+  phone: {
+    type: String,
+    required: true, // Phone number is required
+  },
+  experience: {
+    type: String,
+    required: true, // Experience level is required
+    enum: ['beginner', 'experienced'], // Experience must be one of these values
+  },
+  resume: {
+    type: String, // Stores the filename of the uploaded resume
+    required: true, // Resume upload is required
+  },
+});
 
+// Create the model from the schema
+const Profile = mongoose.model('Profile', ProfileSchema);
 
-module.exports = mongoose.model('Profile', profileSchema);
+module.exports = Profile;

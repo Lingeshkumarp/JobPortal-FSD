@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate,Link } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -48,11 +50,25 @@ const handleGitHubLogin = () => {
           </div>
           <button type="submit" className="w-full bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600">Login</button>
           <div className="flex items-center justify-center mt-4">
-          <p className="text-sm text-gray-600">Don't have an account? <Link to={"/signup"} className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</Link></p>
+          <p className="text-sm text-gray-600">Don't have an account? <Link to={"/"} className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</Link></p>
         </div>
         <div className="flex items-center justify-center mt-4">
           {/* <span className="mr-2 bg-white px-4 py-1 text-sm text-gray-600">Or continue with</span> */}
-          
+          {/* <div className='main-container'>
+      <GoogleOAuthProvider clientId='257538003735-00o1fbsg4brl2j6afkeg2skd8densd73.apps.googleusercontent.com'>
+
+      
+      <GoogleLogin 
+      onSuccess={credentialResponse=>{
+        console.log(credentialResponse);
+      }}
+      orError={()=>{
+        console.log("Sign up failed");
+      }}
+      />  
+      
+      </GoogleOAuthProvider>
+    </div> */}
           <button
             onClick={handleGoogleLogin}
             className="flex items-center w-full justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
@@ -84,6 +100,7 @@ const handleGitHubLogin = () => {
           </button>
         </form>
       </div>
+      
     </div>
   );
 }

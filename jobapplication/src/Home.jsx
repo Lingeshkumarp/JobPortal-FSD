@@ -21,7 +21,7 @@ function Home(){
       <Jobs/>
       <Value/>
       <Footer/>
-      <Otp/>
+      {/* <Otp/> */}
 
       
 
@@ -30,7 +30,7 @@ function Home(){
 {/* <button class="motion-safe:hover:-translate-x-0.5 motion-safe:transition ...">
   Save changes
 </button> */}
-<button type="button" class="bg-indigo-500 ..." disabled>
+{/* <button type="button" class="bg-indigo-500 ..." disabled>
   <svg class="motion-reduce:hidden animate-spin ..." viewBox="0 0 24 24">abc</svg>
   Processing...
 </button>
@@ -38,7 +38,7 @@ function Home(){
   Save changes
 </button>
       {/* <Profile userProfile={userProfile} /> */}
-    </div>
+    </div> 
         </>
     )
 }

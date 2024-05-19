@@ -33,6 +33,9 @@ li:hover::before{
   background:url(/src/Assets/textimonial-bg.png);
   background-color: #d2d5dc;
 }
+#logo{
+  border-radius: 50%;
+}
 /* HTML: <div class="loader"></div> */
 .loader {
   width: 40px;

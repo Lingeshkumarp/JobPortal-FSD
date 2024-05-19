@@ -4,7 +4,8 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const bodyparser = require('body-parser')
 const { User } =require("./Schemas/UserSchema")
-//const { Profile } =require('./Schemas/ProfileSchema')
+const { Data } =require("./Schemas/DataSchema")
+const { Profile } =require('./Schemas/ProfileSchema')
 const multer = require("multer")
 const path = require("path")
 require("dotenv").config()
@@ -73,121 +74,179 @@ app.post('/login',async(req,res)=>{
     }
 })
 
-const storage = multer.diskStorage({
-    destination:(req,file,callback)=>{
-        callback(null,"images")
-    },
-    filename:(req,file,callback)=>{
-        callback(null,req.body.name)
+
+//profile
+
+// Load environment variables from .env file
+dotenv.config();
+
+// const app = express();
+// const PORT = process.env.PORT || 5000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// MongoDB connection
+mongoose.connect(process.env.mongo_url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
+
+// Routes
+app.get('/data', async (req, res) => {
+  try {
+    const data = await Data.find();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.get('/data/:id', async (req, res) => {
+  try {
+    const data = await Data.findById(req.params.id);
+    if (!data) {
+      return res.status(404).json({ message: 'Data not found' });
     }
-})
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
-const upload = multer({storage:storage})
-app.post("/upload",upload.single("file"),(req,res)=>{
-    res.status(200).json("File has been uploaded")
-})
+app.post('/data', async (req, res) => {
+  const { image, title, location, desc, company } = req.body;
 
-//otp
-// app.use(bodyParser.json());
-// app.use(cors());
+  const newData = new Data({
+    image,
+    title,
+    location,
+    desc,
+    company,
+  });
 
-// // Connect to MongoDB
-// mongoose.connect('mongodb://localhost:27017/otp_verification', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+  try {
+    const savedData = await newData.save();
+    res.status(201).json(savedData);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
-// // Define a mongoose schema and model for OTP
-// const otpSchema = new mongoose.Schema({
-//   email: String,
-//   otp: String,
-// });
-// const OTP = mongoose.model('OTP', otpSchema);
+app.put('/data/:id', async (req, res) => {
+  try {
+    const updatedData = await Data.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    if (!updatedData) {
+      return res.status(404).json({ message: 'Data not found' });
+    }
+    res.json(updatedData);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
-// // Route to generate and send OTP
-// app.post('/api/send-otp', async (req, res) => {
-//   const { email } = req.body;
-//   const otp = otpGenerator.generate(6, { upperCase: false, specialChars: false, alphabets: false });
+app.delete('/data/:id', async (req, res) => {
+  try {
+    const deletedData = await Data.findByIdAndDelete(req.params.id);
+    if (!deletedData) {
+      return res.status(404).json({ message: 'Data not found' });
+    }
+    res.json({ message: 'Data deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
-//   try {
-//     // Save OTP to the database
-//     await OTP.create({ email, otp });
-//     // In a real application, you would send this OTP to the user's email or phone
-//     console.log(`OTP sent to ${email}: ${otp}`);
-//     res.status(200).json({ success: true, message: 'OTP sent successfully' });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ success: false, message: 'Failed to send OTP' });
-//   }
-// });
-
-// // Route to verify OTP
-// app.post('/api/verify-otp', async (req, res) => {
-//   const { email, otp } = req.body;
-
-//   try {
-//     // Check if OTP exists in the database
-//     const existingOTP = await OTP.findOne({ email, otp });
-//     if (existingOTP) {
-//       // If OTP exists, delete it from the database
-//       await OTP.deleteOne({ email, otp });
-//       res.status(200).json({ success: true, message: 'OTP verified successfully' });
-//     } else {
-//       res.status(400).json({ success: false, message: 'Invalid OTP' });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ success: false, message: 'Failed to verify OTP' });
-//   }
-// });
-
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 
-// //PROFILE
+mongoose.connect('', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-// // backend/server.js
+const ProfileSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  phone: String,
+  experience: String,
+  resume: String,
+});
+
+const Profile = mongoose.model('Profile', ProfileSchema);
+
+// Configure Multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage });
+
+// API endpoint to handle form submission
+app.post('/api/profile', upload.single('resume'), async (req, res) => {
+  try {
+    const { name, email, phone, experience } = req.body;
+    const resume = req.file.filename;
+
+    const profile = new Profile({
+      name,
+      email,
+      phone,
+      experience,
+      resume,
+    });
+
+    await profile.save();
+    res.status(201).json({ message: 'Profile created successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Serve static files (Resume uploads)
+app.use('/uploads', express.static('uploads'));
+
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+
+//router
+const router = Router();
+
+/** import all controllers */
+import * as controller from './controllers/appControllers.js';
+import { registerMail } from './controllers/mailer.js'
+import Auth, { localVariables } from '.middleware/auth.js';
 
 
 
-// app.use(cors());
-// app.use(express.json());
+/** POST Methods */
+router.route('/register').post(controller.register); // register user
+router.route('/registerMail').post(registerMail); // send the email
+router.route('/authenticate').post(controller.verifyUser, (req, res) => res.end()); // authenticate user
+router.route('/login').post(controller.verifyUser,controller.login); // login in app
 
-// // Connect to MongoDB
-// mongoose.connect('mongodb://localhost:27017/profiles', { useNewUrlParser: true, useUnifiedTopology: true });
+/** GET Methods */
+router.route('/user/:username').get(controller.getUser) // user with username
+router.route('/generateOTP').get(controller.verifyUser, localVariables, controller.generateOTP) // generate random OTP
+router.route('/verifyOTP').get(controller.verifyUser, controller.verifyOTP) // verify generated OTP
+router.route('/createResetSession').get(controller.createResetSession) // reset all the variables
 
-// // Define a mongoose schema for profile
-// const profileSchema = new mongoose.Schema({
-//   name: String,
-//   bio: String,
-// });
 
-// const Profile = mongoose.model('Profile', profileSchema);
-
-// // Route to get profile
-// app.get('/api/profile', async (req, res) => {
-//   try {
-//     const profile = await Profile.findOne();
-//     res.json(profile);
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-
-// // Route to create profile
-// app.post('/api/profile', async (req, res) => {
-//   try {
-//     const { name, bio } = req.body;
-//     const profile = new Profile({ name, bio });
-//     await profile.save();
-//     res.status(201).json(profile);
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// });
-
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
+/** PUT Methods */
+router.route('/updateuser').put(Auth, controller.updateUser); // is use to update the user profile
+router.route('/resetPassword').put(controller.verifyUser, controller.resetPassword); // use to reset password
