@@ -8,12 +8,12 @@ import Value from './Components/Value/Value'
 import Footer from './Components/Footer/Footer'
 import Home from './Home' 
 import { ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Profile from './Profile'
 import About from './About'
-// import Jobs from './Jobs'
+import NewJobs from './NewJobs'
 
 const App=()=>{
   return(
@@ -24,9 +24,9 @@ const App=()=>{
             <Route path='/' element={<Signup/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
             <Route path='/home' element={<Home/>}></Route>
-            <Route path='/jobs' element={<Jobs/>}></Route>
-            <Route path='/profile' element={<Profile/>}></Route>
+            <Route path='/jobs' element={<NewJobs/>}></Route>
             <Route path='/about' element={<About/>}></Route>
+            <Route path='/profile' element={<Profile/>}></Route>
             
           </Routes>
       </BrowserRouter>

@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import {BiTimeFive} from 'react-icons/bi'
+import googleLogo from '../../../public/googleLogo.png'
+import axios from 'axios';
+import { useNavigate,Link } from 'react-router-dom';
 
 // const Data=[
 //   {
@@ -14,6 +17,19 @@ import {BiTimeFive} from 'react-icons/bi'
 // ]
 
 const Jobs=()=>{
+  const nav =useNavigate();
+  // const[image,setImage] = useState();
+  // const[title,setTitle] = useState();
+  // const[time,setTime] = useState();
+  // const[location,setLocation] = useState();
+  // const[desc,setDesc] = useState();
+  // const[company,setCompany] = useState();
+  // const handleData = () => {
+  //   e.prevenDefault()
+  //   axios.post('https://jobportal-fsd.onrender.com/data',{image,title,time,location,desc,company})
+  //   .then(response => {console.log(response)})
+  //   .catch(error => console.log(error))
+  // }
   return(
     <div>
       <div className="jobContainer flex gap-10 justify-center flex-wrap items-center py-10">
@@ -54,10 +70,10 @@ const Jobs=()=>{
           <p className='text-[13px] text-[#959595] pt-[20px] border-t-[2px] mt-[20px] group-hover:text-white'>TCS</p>
 
               <div className='company flex items-center gap-2'>
-                <img src="" alt="Company Logo" className='w-[10%]'/>
+                <img src={"googleLogo"} alt="Company Logo" className='w-[10%]'/>
                 <span className='text-[14px] py-[1rem] block group-hover:text-white'>No</span>
               </div>
-              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'>Apply Now</button>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-black group-hover:text-white'><Link to={"/profile"}>Apply Now</Link></button>
 
         </div>
 
@@ -75,7 +91,7 @@ const Jobs=()=>{
                 <img src="" alt="Company Logo" className='w-[10%]'/>
                 <span className='text-[14px] py-[1rem] block group-hover:text-white'>No</span>
               </div>
-              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'>Apply Now</button>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'><Link to={"/profile"}>Apply Now</Link></button>
 
         </div>
 
@@ -93,7 +109,7 @@ const Jobs=()=>{
                 <img src="" alt="Company Logo" className='w-[10%]'/>
                 <span className='text-[14px] py-[1rem] block group-hover:text-white'>No</span>
               </div>
-              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'>Apply Now</button>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'><Link to={"/profile"}>Apply Now</Link></button>
 
         </div>
 
@@ -111,7 +127,79 @@ const Jobs=()=>{
                 <img src="" alt="Company Logo" className='w-[10%]'/>
                 <span className='text-[14px] py-[1rem] block group-hover:text-white'>No</span>
               </div>
-              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'>Apply Now</button>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'><Link to={"/profile"}>Apply Now</Link></button>
+
+        </div>
+
+        <div className='group group/item singleJob w-[250px] p-[20px] bg-white rounded [10px] hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg'>
+          <span className='flex justify-between items-center gap-4'>
+            <h1 className='text-[16px] font-semibold text-textColor group-hover:text-white'>Data Analaytics</h1>
+            <span className='flex items-center text-[#ccc] gap-1'>
+              <BiTimeFive/>Now
+            </span>
+          </span>
+          <h6 className='text-[#ccc]'>India</h6>
+          <p className='text-[13px] text-[#959595] pt-[20px] border-t-[2px] mt-[20px] group-hover:text-white'>TCS</p>
+
+              <div className='company flex items-center gap-2'>
+                <img src="" alt="Company Logo" className='w-[10%]'/>
+                <span className='text-[14px] py-[1rem] block group-hover:text-white'>No</span>
+              </div>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'><Link to={"/profile"}>Apply Now</Link></button>
+
+        </div>
+
+        <div className='group group/item singleJob w-[250px] p-[20px] bg-white rounded [10px] hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg'>
+          <span className='flex justify-between items-center gap-4'>
+            <h1 className='text-[16px] font-semibold text-textColor group-hover:text-white'>Data Analaytics</h1>
+            <span className='flex items-center text-[#ccc] gap-1'>
+              <BiTimeFive/>Now
+            </span>
+          </span>
+          <h6 className='text-[#ccc]'>India</h6>
+          <p className='text-[13px] text-[#959595] pt-[20px] border-t-[2px] mt-[20px] group-hover:text-white'>TCS</p>
+
+              <div className='company flex items-center gap-2'>
+                <img src="" alt="Company Logo" className='w-[10%]'/>
+                <span className='text-[14px] py-[1rem] block group-hover:text-white'>No</span>
+              </div>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'><Link to={"/profile"}>Apply Now</Link></button>
+
+        </div>
+
+        <div className='group group/item singleJob w-[250px] p-[20px] bg-white rounded [10px] hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg'>
+          <span className='flex justify-between items-center gap-4'>
+            <h1 className='text-[16px] font-semibold text-textColor group-hover:text-white'>Data Analaytics</h1>
+            <span className='flex items-center text-[#ccc] gap-1'>
+              <BiTimeFive/>Now
+            </span>
+          </span>
+          <h6 className='text-[#ccc]'>India</h6>
+          <p className='text-[13px] text-[#959595] pt-[20px] border-t-[2px] mt-[20px] group-hover:text-white'>TCS</p>
+
+              <div className='company flex items-center gap-2'>
+                <img src="" alt="Company Logo" className='w-[10%]'/>
+                <span className='text-[14px] py-[1rem] block group-hover:text-white'>No</span>
+              </div>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'><Link to={"/profile"}>Apply Now</Link></button>
+
+        </div>
+
+        <div className='group group/item singleJob w-[250px] p-[20px] bg-white rounded [10px] hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg'>
+          <span className='flex justify-between items-center gap-4'>
+            <h1 className='text-[16px] font-semibold text-textColor group-hover:text-white'>Data Analaytics</h1>
+            <span className='flex items-center text-[#ccc] gap-1'>
+              <BiTimeFive/>Now
+            </span>
+          </span>
+          <h6 className='text-[#ccc]'>India</h6>
+          <p className='text-[13px] text-[#959595] pt-[20px] border-t-[2px] mt-[20px] group-hover:text-white'>TCS</p>
+
+              <div className='company flex items-center gap-2'>
+                <img src="" alt="Company Logo" className='w-[10%]'/>
+                <span className='text-[14px] py-[1rem] block group-hover:text-white'>No</span>
+              </div>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'><Link to={"/profile"}>Apply Now</Link></button>
 
         </div>
 
