@@ -56,7 +56,7 @@ const Profile = () => {
   
   const handleProfile = () => {
     e.prevenDefault()
-    axios.post('http://localhost:5713/profile',{name,email,phonenumber,experience,resume})
+    axios.post('https://jobportal-fsd.onrender.com/profile',{name,email,phonenumber,experience,resume})
     .then(response => {console.log(response)
       toast.success('Profile Created');
     })

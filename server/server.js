@@ -4,14 +4,17 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const bodyparser = require('body-parser')
 const { User } =require("./Schemas/UserSchema")
-const  Data  =require("./Schemas/DataSchema")
+const { Data } =require("./Schemas/DataSchema")
 const Profile  =require('./Schemas/ProfileSchema')
 const multer = require("multer")
 const path = require("path")
+const cookieparser = require("cookie-parser")
+const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
 app.use(cors())
-app.use(bodyparser.json())
+app.use(express.json())
+app.use(cookieparser())
 
 async function connectTodb(){
     try {
@@ -61,6 +64,7 @@ app.post('/login',async(req,res)=>{
         if(userDoc){
             if(userDoc.password === req.body.password){
                 res.status(200).json({message:"login successful"})
+                // const token = 
             }
             else{
                 res.status(401).json({message:"invalid credentials"})
@@ -81,10 +85,16 @@ app.post('/login',async(req,res)=>{
     .catch(error => res.json(error))
  })
 
+//data upload
 
-
-
-//profile uploD
+app.get('/getalldata',async (req, res) => {
+    try {
+      const data = await Data.find();
+      res.json(data);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
 
 // app.post('/profiles', upload.single('resume'), async (req, res) => {
 //   const { name, email, phone, experience } = req.body;
