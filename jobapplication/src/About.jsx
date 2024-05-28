@@ -13,7 +13,7 @@ const About=()=>{
         </div>
         <p className='text-white pb-[13px] opacity-70 leading-7'>
         <div class="google-map">
-            <iframe src="https://maps.app.goo.gl/NVYtEbe8BeVE6bZg9" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            {/* <iframe src="https://maps.app.goo.gl/NVYtEbe8BeVE6bZg9" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> */}
         </div>
         </p>
       </div>

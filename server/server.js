@@ -10,7 +10,7 @@ const multer = require("multer")
 const path = require("path")
 const cookieparser = require("cookie-parser")
 const jwt = require("jsonwebtoken")
-require("dotenv").config()
+require("dotenv").config()  
 
 app.use(cors())
 app.use(express.json())
@@ -87,14 +87,21 @@ app.post('/login',async(req,res)=>{
 
 //data upload
 
-app.get('/getalldata',async (req, res) => {
-    try {
-      const data = await Data.find();
-      res.json(data);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
-  });
+// app.get('/data',async (req, res) => {
+//     try {
+//       const data = await Data.find();
+//       //res.send("get request fetched")
+//       res.json(data);
+//     } catch (err) {
+//       res.status(500).json({ error: err.message });
+//     }
+//   });
+
+app.get('/data',(req,res) => {
+    Data.find()
+    .then(datas => res.json(datas))
+    .catch(err => res.json(err))
+})
 
 // app.post('/profiles', upload.single('resume'), async (req, res) => {
 //   const { name, email, phone, experience } = req.body;

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {BiTimeFive} from 'react-icons/bi'
 import googleLogo from '../../../public/googleLogo.png'
 import axios from 'axios';
@@ -23,18 +23,27 @@ const Jobs=()=>{
   function handleSuccess(){
     toast.success('Applied Successfully!');
   }
-  // const[image,setImage] = useState();
-  // const[title,setTitle] = useState();
-  // const[time,setTime] = useState();
-  // const[location,setLocation] = useState();
-  // const[desc,setDesc] = useState();
-  // const[company,setCompany] = useState();
-  // const handleData = () => {
-  //   e.prevenDefault()
-  //   axios.post('https://jobportal-fsd.onrender.com/data',{image,title,time,location,desc,company})
-  //   .then(response => {console.log(response)})
-  //   .catch(error => console.log(error))
-  // }
+  const[image,setImage] = useState();
+  const[title,setTitle] = useState();
+  const[time,setTime] = useState();
+  const[location,setLocation] = useState();
+  const[desc,setDesc] = useState();
+  const[company,setCompany] = useState();
+  const handleData = () => {
+    axios.get('https://jobportal-fsd.onrender.com/data')
+    .then(response => {console.log("response",response)})
+    .catch(error => console.log(error))
+  }
+  useEffect(()=>{
+    handleData();
+  },[])
+
+  // get method
+   const[data,setData] = useState([]);
+   useEffect(() => {
+    axios.get('https://jobportal-fsd.onrender.com/data')
+   })
+  //
   return(
     <div>
       <div className="jobContainer flex gap-10 justify-center flex-wrap items-center py-10">
