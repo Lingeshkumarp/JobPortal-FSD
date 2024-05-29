@@ -5,17 +5,7 @@ import axios from 'axios';
 import { useNavigate,Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-// const Data=[
-//   {
-//     _id:1,
-//     image:vite,
-//     title:'Web Development',
-//     time:'Now',
-//     location:'India',
-//     desc:'TCSdesc',
-//     company:'TCS'
-//   }
-// ]
+
 
 const Jobs=()=>{
   const nav =useNavigate();
@@ -30,7 +20,7 @@ const Jobs=()=>{
   const[desc,setDesc] = useState();
   const[company,setCompany] = useState();
   const handleData = () => {
-    axios.get('https://jobportal-fsd.onrender.com/data')
+    axios.get('http://localhost:4000/data')
     .then(response => {console.log("response",response)})
     .catch(error => console.log(error))
   }
@@ -41,17 +31,25 @@ const Jobs=()=>{
   // get method
    const[data,setData] = useState([]);
    useEffect(() => {
-    axios.get('https://jobportal-fsd.onrender.com/data')
-   })
+    axios.get('http://localhost:4000/data')
+    .then(response => {
+      setData(response.data);
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.log('Error fetching items:',error)
+    })
+   },[])
   //
   return(
     <div>
       <div className="jobContainer flex gap-10 justify-center flex-wrap items-center py-10">
 
-      {/* {
-        Data.map(({id,image,title,time,location,desc,company})=>{
+      {
+        data.map((value)=>{
+          const {title,location,desc,company} = value.id; 
           return(
-            <div key={id} className='group group/item singleJob w-[250px] p-[20px] bg-white rounded [10px] hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg'>
+            <div key={value.id} className='group group/item singleJob w-[250px] p-[20px] bg-white rounded [10px] hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg'>
           <span className='flex justify-between items-center gap-4'>
             <h1 className='text-[16px] font-semibold text-textColor group-hover:text-white'>{title}</h1>
             <span className='flex items-center text-[#ccc] gap-1'>
@@ -65,13 +63,13 @@ const Jobs=()=>{
                 <img src="" alt="Company Logo" className='w-[10%]'/>
                 <span className='text-[14px] py-[1rem] block group-hover:text-white'>{company}</span>
               </div>
-              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white'>Apply Now</button>
+              <button className='border-[2px] rounded-[10px] block p-[10px] w-full text-[14px] font-semibold text-textColor hover:bg-white group-hover/item:text-textColor group-hover:text-white' onClick={handleSuccess}>Apply Now</button>
 
         </div>
       
           )
         })
-      } */}
+      }
 
         <div className='group group/item singleJob w-[250px] p-[20px] bg-white rounded [10px] hover:bg-blueColor shadow-lg shadow-greyIsh-400/700 hover:shadow-lg text-black-500'>
           <span className='flex justify-between items-center gap-4'>
