@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { getAuth } from "firebase/auth";
+
+
 const Profile = () => {
   // const [formData, setFormData] = useState({
   //   name: '',
@@ -48,6 +51,10 @@ const Profile = () => {
   //   };
     
   // };
+  const auth = getAuth();
+auth.languageCode = 'it';
+// To apply the default browser preference instead of explicitly setting it.
+// auth.useDeviceLanguage();
   const [name,setName] = useState();
   const[email,setEmail] = useState();
   const[phonenumber,setPhonenumber] = useState();
@@ -56,7 +63,7 @@ const Profile = () => {
   
   const handleProfile = () => {
     e.prevenDefault()
-    axios.post('https://jobportal-fsd.onrender.com/profile',{name,email,phonenumber,experience,resume})
+    axios.post('https://jobportal-fsd.onrender.com/profile',{name,email,phone,experience,resume})
     .then(response => {console.log(response)
       toast.success('Profile Created');
     })

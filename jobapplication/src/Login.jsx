@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate,Link } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 
@@ -35,6 +36,8 @@ const handleGitHubLogin = () => {
   };
 
   return (
+    <>
+    <Toaster />
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-purple-100">
       <div className="max-w-md w-full bg-[#f8f8ff] p-8 rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold mb-4 text-center text-gray-800">Login</h2>
@@ -49,6 +52,7 @@ const handleGitHubLogin = () => {
             <input type="password" id="password" className="form-input text-[blueColor] mt-1 pt-2 block w-full" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <button type="submit" className="w-full bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600">Login</button>
+          
           <div className="flex items-center justify-center mt-4">
           <p className="text-sm text-gray-600">Don't have an account? <Link to={"/"} className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</Link></p>
         </div>
@@ -102,6 +106,7 @@ const handleGitHubLogin = () => {
       </div>
       
     </div>
+    </>
   );
 }
 

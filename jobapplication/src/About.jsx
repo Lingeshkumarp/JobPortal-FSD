@@ -2,9 +2,15 @@ import { useState } from 'react'
 import { AiFillFacebook } from 'react-icons/ai'
 import { AiFillGithub } from 'react-icons/ai'
 import { AiFillGoogleCircle } from 'react-icons/ai'
+import office from '../../jobapplication/public/office.jpg'
 
 const About=()=>{
   return(
+    <>
+    <img className='w=90%'src={office}/>
+    <div className="relative h-32 w-320 ...">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.0361190749!2d-74.30933632161012!3d40.69753995481264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1717091459186!5m2!1sen!2sin" className='map absolute inset-y-0 right-0'></iframe>
+    </div>
     <div className='footer p-[5rem] mb-4 bg-blueColor rounded-[10px] gap-8 grid grid-cols-5 m-auto items-center justify-center'>
       <div>
         <div className='logoDiv'>
@@ -24,12 +30,10 @@ const About=()=>{
         <div className='grid gap-3'>
           <li className='text-white opacity-[.7] hover:opacity-[1]'>LK (India) Limited</li>
           <li className='text-white opacity-[.7] hover:opacity-[1]'>B - 8, Sector - 132</li>
-          <li className='text-white opacity-[.7] hover:opacity-[1]'>Noida - 201304</li>
-          <li className='text-white opacity-[.7] hover:opacity-[1]'>India</li>
+          <li className='text-white opacity-[.7] hover:opacity-[1]'>Noida - 201304, India</li>
           <li className='text-white opacity-[.7] hover:opacity-[1]'>Phone: +91-120-4841100,</li>
-          <li className='text-white opacity-[.7] hover:opacity-[1]'>+91-120-3082000</li>
           <li className='text-white opacity-[.7] hover:opacity-[1]'>Fax: +91-120-3082095</li>
-          <li className='text-white opacity-[.7] hover:opacity-[1]'>E-mail: investors@jobportal.com</li>
+          <li className='text-white opacity-[.7] hover:opacity-[1]'>Email: investors@jobportal.com</li>
         </div>
       </div>
 
@@ -73,6 +77,7 @@ const About=()=>{
       </div>
 
     </div>
+    </>
   )
 }
 
