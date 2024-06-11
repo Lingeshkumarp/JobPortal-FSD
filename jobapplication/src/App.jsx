@@ -14,6 +14,7 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Profile from './Profile'
 import About from './About'
 import NewJobs from './NewJobs'
+import JobPost from './JobPost'
 
 const App=()=>{
   return(
@@ -24,10 +25,11 @@ const App=()=>{
             <Route path='/' element={<Signup/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
             <Route path='/home' element={<Home/>}></Route>
-            <Route path='/jobs' element={<NewJobs/>}></Route>
+            {/* <Route path='/jobs' element={<NewJobs/>}></Route> */}
             <Route path='/about' element={<About/>}></Route>
             <Route path='/profile' element={<Profile/>}></Route>
-            
+            <Route path='/jobpost' element={<JobPost/>}></Route>
+            {/* <Route path='/modal' element={<Modal/>}></Route> */}
           </Routes>
       </BrowserRouter>
     <div className='w-[93%] m-auto w-16 lg:w-48 bg-white'>

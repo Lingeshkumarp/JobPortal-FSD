@@ -31,7 +31,7 @@ const Search=()=>{
         </form>
 
         <div className='secDiv flex items-center gap-10 justify-center'>
-            <div className='singleSearch flex items-center gap-2'>
+            {/* <div className='singleSearch flex items-center gap-2'>
                 <label htmlFor="relevance" className='text-[#808080] font-semibold'>Sort By :</label>
                 <select name="" id="level" className='bg-white rounded-[3px] px-4 py-1'>
                     <option value="">Relevance</option>
@@ -39,7 +39,7 @@ const Search=()=>{
                     <option value="">Starts with</option>
                     <option value="">Contains</option>
                 </select>
-            </div>
+            </div> */}
 
             <div className='singleSearch flex items-center gap-2'>
                 <label htmlFor="relevance" className='text-[#808080] font-semibold'>Type :</label>

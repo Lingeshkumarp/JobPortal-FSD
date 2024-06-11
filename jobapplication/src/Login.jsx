@@ -32,6 +32,7 @@ const handleGitHubLogin = () => {
       nav("/home");
     } catch (error) {
       setErrorMessage(error.response.data.message);
+      // toast.error('Error!');
     }
   };
 
@@ -54,9 +55,9 @@ const handleGitHubLogin = () => {
           <button type="submit" className="w-full bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-600">Login</button>
           
           <div className="flex items-center justify-center mt-4">
-          <p className="text-sm text-gray-600">Don't have an account? <Link to={"/"} className="font-medium text-indigo-600 hover:text-indigo-500">Sign up</Link></p>
+          <p className="text-sm text-gray-600">Don't have an account? <Link to={"/"} >Sign up</Link></p>
         </div>
-        <div className="flex items-center justify-center mt-4">
+        {/* <div className="flex items-center justify-center mt-4"> */}
           {/* <span className="mr-2 bg-white px-4 py-1 text-sm text-gray-600">Or continue with</span> */}
           {/* <div className='main-container'>
       <GoogleOAuthProvider clientId='257538003735-00o1fbsg4brl2j6afkeg2skd8densd73.apps.googleusercontent.com'>
@@ -73,7 +74,7 @@ const handleGitHubLogin = () => {
       
       </GoogleOAuthProvider>
     </div> */}
-          <button
+          {/* <button
             onClick={handleGoogleLogin}
             className="flex items-center w-full justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
           >
@@ -101,7 +102,7 @@ const handleGitHubLogin = () => {
               <path fillRule="evenodd" clipRule="evenodd" d="M12 1c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.292 17.708c-3.623.406-5.86-1.734-5.86-5.11V11h2.412v2.598c0 1.198.534 1.987 1.482 1.987.927 0 1.256-.672 1.256-1.342V11h2.564v2.345c.019 3.377-1.992 5.101-5.864 4.363z"/>
             </svg>
             Continue with GitHub
-          </button>
+          </button> */}
         </form>
       </div>
       

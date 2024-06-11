@@ -6,6 +6,7 @@ const bodyparser = require('body-parser')
 const { User } =require("./Schemas/UserSchema")
 const { Data } =require("./Schemas/DataSchema")
 const Profile  =require('./Schemas/ProfileSchema')
+const Job =require("./Schemas/JobSchema")
 const multer = require("multer")
 const path = require("path")
 const cookieparser = require("cookie-parser")
@@ -102,6 +103,28 @@ app.get('/data',(req,res) => {
     .then(datas => res.json(datas))
     .catch(err => res.json(err))
 })
+
+
+//admin job post
+    app.post('/api/jobs', async (req, res) => {
+        const { title, desc, company, location, salary } = req.body;
+    
+        // const job = new Job({
+        //   title,
+        //   desc,
+        //   company,
+        //   location,
+        //   salary,
+        // });
+    
+        // try {
+            Job.create(req.body)
+            .then(JobTransfer => res.json(JobTransfer))
+            .catch(error => res.json(error))
+        // } catch (error) {
+        //   res.status(500).json({ error: 'Error creating job' });
+        // }
+      });
 
 // app.post('/profiles', upload.single('resume'), async (req, res) => {
 //   const { name, email, phone, experience } = req.body;

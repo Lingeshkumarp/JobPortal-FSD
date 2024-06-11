@@ -51,8 +51,8 @@ const Profile = () => {
   //   };
     
   // };
-  const auth = getAuth();
-auth.languageCode = 'it';
+//   const auth = getAuth();
+// auth.languageCode = 'it';
 // To apply the default browser preference instead of explicitly setting it.
 // auth.useDeviceLanguage();
   const [name,setName] = useState();

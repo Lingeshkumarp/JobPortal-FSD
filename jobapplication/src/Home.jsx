@@ -19,7 +19,7 @@ function Home(){
       <Navbar/>
       <Search/>
       <Jobs/>
-      <Value/>
+      {/* <Value/> */}
       <Footer/>
       {/* <Otp/> */}
 
